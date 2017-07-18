@@ -1,4 +1,4 @@
-package com.smacc.codingchallenge.dao;
+package com.smacc.codingchallenge.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

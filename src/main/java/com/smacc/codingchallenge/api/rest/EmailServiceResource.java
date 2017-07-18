@@ -1,6 +1,6 @@
 package com.smacc.codingchallenge.api.rest;
 
-import com.smacc.codingchallenge.dao.SendEmailMessageRequest;
+import com.smacc.codingchallenge.dto.SendEmailMessageRequest;
 import com.smacc.codingchallenge.services.EmailService;
 import io.swagger.annotations.*;
 
