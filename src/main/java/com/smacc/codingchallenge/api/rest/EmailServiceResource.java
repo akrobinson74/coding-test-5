@@ -1,6 +1,7 @@
 package com.smacc.codingchallenge.api.rest;
 
 import com.smacc.codingchallenge.dao.SendEmailMessageRequest;
+import com.smacc.codingchallenge.services.EmailService;
 import io.swagger.annotations.*;
 
 import javax.ws.rs.*;
@@ -13,6 +14,12 @@ import javax.ws.rs.core.Response;
 @Api("/email")
 @Path("/email")
 public class EmailServiceResource {
+
+    private final EmailService emailService;
+
+    public EmailServiceResource(EmailService emailService) {
+        this.emailService = emailService;
+    }
 
     @POST
     @ApiOperation(
@@ -32,7 +39,7 @@ public class EmailServiceResource {
             required=true)
         final SendEmailMessageRequest request) {
 
-        return null;
+        return emailService.transmitMessage(request);
     }
 
     @GET
