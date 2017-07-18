@@ -1,0 +1,11 @@
+---
+server:
+  applicationConnectors:
+    - type: http
+      port: 8081
+  adminConnectors:
+    - type: http
+      port: 8082
+
+swagger:
+  resourcePackage: com.smacc.codingchallenge.api.rest
