@@ -1,7 +1,9 @@
 package com.smacc.codingchallenge;
 
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
+import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClient;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClientBuilder;
 import com.smacc.codingchallenge.api.rest.EmailServiceResource;
 import com.smacc.codingchallenge.dao.AWSSESClientWrapper;
@@ -30,7 +32,9 @@ public class SpringConfig {
     }
 
     @Bean
-    private AmazonSimpleEmailService amazonSimpleEmailService() {
+    private AmazonSimpleEmailServiceClient amazonSimpleEmailService() {
+        AmazonSimpleEmailServiceClient amazonSimpleEmailServiceClient =
+            new AmazonSimpleEmailServiceClient(DefaultAWSCredentialsProviderChain.getInstance().getCredentials());
         return AmazonSimpleEmailServiceClientBuilder.standard()
             .withRegion(Regions.US_WEST_2).build();
     }

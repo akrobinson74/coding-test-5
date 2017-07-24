@@ -33,26 +33,32 @@ public class SendEmailMessageRequest {
         this.toList = toList;
     }
 
+    @JsonProperty("bccList")
     public List<String> getBccList() {
         return bccList;
     }
 
+    @JsonProperty("body")
     public String getBody() {
         return body;
     }
 
+    @JsonProperty("ccList")
     public List<String> getCcList() {
         return ccList;
     }
 
+    @JsonProperty("from")
     public String getFrom() {
         return from;
     }
 
+    @JsonProperty("subject")
     public String getSubject() {
         return subject;
     }
 
+    @JsonProperty("toList")
     public List<String> getToList() {
         return toList;
     }

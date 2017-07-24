@@ -4,6 +4,8 @@ import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
 import com.amazonaws.services.simpleemail.model.*;
 import com.smacc.codingchallenge.dto.SendEmailMessageRequest;
 
+import javax.ws.rs.core.Response;
+
 /**
  *
  */
@@ -18,7 +20,7 @@ public class AWSSESClientWrapper implements EmailClient<AWSSESClientWrapper> {
         this.verifiedFromAddress = verifiedFromAddress;
     }
 
-    public void sendEmail(
+    public Response sendEmail(
         final SendEmailMessageRequest sendEmailMessageRequest) {
         final String bodyText = sendEmailMessageRequest.getBody();
         final String emailContent = bodyText == null ? "" : bodyText;
@@ -37,5 +39,18 @@ public class AWSSESClientWrapper implements EmailClient<AWSSESClientWrapper> {
                 .withCcAddresses(sendEmailMessageRequest.getCcList())
                 .withBccAddresses(sendEmailMessageRequest.getBccList())
             );
+
+        try {
+            SendEmailResult sendEmailResult =
+                amazonSimpleEmailService.sendEmail(sendEmailRequest);
+
+            return
+                Response.ok().entity("Email queued via AWS with message id: " +
+                sendEmailResult.getMessageId()).build();
+        }
+        catch (Exception e) {
+            return Response.serverError().entity(e.getStackTrace()).build();
+        }
+
     }
 }
