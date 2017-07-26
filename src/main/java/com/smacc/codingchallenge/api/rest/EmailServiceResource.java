@@ -44,9 +44,14 @@ public class EmailServiceResource {
 
     @GET
     @ApiOperation("Endpoint confirming the resource is available")
+    @ApiResponses(value = {
+        @ApiResponse(code=200, message="Service is available")
+    })
     @Path("/status")
     @Produces(MediaType.APPLICATION_JSON)
     public Response status() {
-        return Response.ok("I'm still here :)").build();
+
+        return Response.ok().type(MediaType.APPLICATION_JSON_TYPE)
+            .entity("{\"msg\" : \"I'm still here :)\"}").build();
     }
 }

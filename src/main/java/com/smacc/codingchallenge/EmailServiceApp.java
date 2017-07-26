@@ -19,12 +19,6 @@ public class EmailServiceApp extends Application<EmailServiceAppConfiguration> {
 
     private static final Logger LOGGER =
         LoggerFactory.getLogger(EmailServiceApp.class);
-    private final ApplicationContext applicationContext;
-
-    public EmailServiceApp() {
-        applicationContext =
-            new AnnotationConfigApplicationContext(SpringConfig.class);
-    }
 
     @Override
     public void initialize(
@@ -34,7 +28,7 @@ public class EmailServiceApp extends Application<EmailServiceAppConfiguration> {
             @Override
             protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(
                 final EmailServiceAppConfiguration emailServiceAppConfiguration) {
-                return emailServiceAppConfiguration.swaggerBundleConfiguration;
+                return emailServiceAppConfiguration.getSwaggerBundleConfiguration();
             }
         });
     }
@@ -45,8 +39,13 @@ public class EmailServiceApp extends Application<EmailServiceAppConfiguration> {
 
     @Override
     public void run(
-        final EmailServiceAppConfiguration emailServiceAppConfiguration,
+        final EmailServiceAppConfiguration configuration,
         final Environment environment) throws Exception {
+
+        SpringConfig.setFromAddress(configuration.getFromAddress());
+
+        final ApplicationContext applicationContext =
+            new AnnotationConfigApplicationContext(SpringConfig.class);
 
         final EmailServiceResource emailServiceResource =
             new EmailServiceResource(

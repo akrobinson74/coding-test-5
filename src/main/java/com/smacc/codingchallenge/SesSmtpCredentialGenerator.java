@@ -5,7 +5,7 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 
 public class SesSmtpCredentialGenerator {
-    private static final String KEY_ENV_VARIABLE = "AWS_SECRET_ACCESS_KEY"; // Put your AWS secret access key in this environment variable.
+    private static final String KEY_ENV_VARIABLE = "AWS_KEY"; // Put your AWS secret access key in this environment variable.
     private static final String MESSAGE = "SendRawEmail"; // Used to generate the HMAC signature. Do not modify.
     private static final byte VERSION = 0x02; // Version number. Do not modify.
 

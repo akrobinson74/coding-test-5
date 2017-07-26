@@ -9,6 +9,17 @@ import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
  */
 public class EmailServiceAppConfiguration extends Configuration {
 
+    @JsonProperty("fromAddress")
+    private String fromAddress;
+
     @JsonProperty("swagger")
-    public SwaggerBundleConfiguration swaggerBundleConfiguration;
+    private SwaggerBundleConfiguration swaggerBundleConfiguration;
+
+    public String getFromAddress() {
+        return fromAddress;
+    }
+
+    public SwaggerBundleConfiguration getSwaggerBundleConfiguration() {
+        return swaggerBundleConfiguration;
+    }
 }

@@ -1,4 +1,14 @@
 ---
+fromAddress: akrobinson74@gmail.com
+
+logging:
+  level: INFO
+  appenders:
+  - type: console
+    logFormat:
+    threshold: ALL
+
+
 server:
   applicationConnectors:
     - type: http
