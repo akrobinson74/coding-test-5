@@ -1,1 +1,1 @@
-# smacc-coding-challenge
+# somecompany-coding-challenge
